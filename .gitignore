@@ -1,6 +1,7 @@
 # --- General ---
 *.log
 .DS_Store
+Thumbs.db
 .vscode/
 .idea/
 
@@ -13,9 +14,8 @@ yarn-error.log*
 
 # --- Angular frontend ---
 dist/
-node_modules/
-.angular/
+tmp/
+out-tsc/
+bazel-out/
+.angular/cache
 coverage/
-
-# --- OS files ---
-Thumbs.db
