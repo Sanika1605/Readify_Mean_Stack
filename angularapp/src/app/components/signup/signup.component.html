@@ -1,0 +1,269 @@
+<!-- <div class="container-fluid d-flex justify-content-center align-items-center" style="height: 100vh;">
+    <div class="d-flex shadow-lg rounded">
+        <img class="col-6" src="../../../assets/images/readifycover.png" alt="image">
+        <div class="col-6">
+            <div class="d-flex flex-column justify-content-center align-items-center w-100 h-100" >
+                <div class="shadow rounded w-75 p-3 d-flex flex-column justify-content-center align-items-center ">
+                <img src="../../../assets/images/logo.png" alt="logo" width="80" height="80" class="align-items-center">
+                <h1>Readify Market</h1>
+                <h4>SignUp</h4>
+                <form class="align-items-center d-flex flex-column w-75" [formGroup]="signUpForm" (ngSubmit)="onSignUp()">
+
+                    <div>
+                        <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                        <input type="text" class="form-control" placeholder="Enter your username"
+                            formControlName="username">
+                    </div>
+                    <div *ngIf="signUpForm.get('username')?.touched && signUpForm.get('username')?.invalid">
+                        <small class="text-danger" *ngIf="signUpForm.get('username')?.errors?.['required']">Username is
+                            required</small>
+                    </div>
+
+                    <div>
+                        <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                        <input type="email" class="form-control" placeholder="Enter your email"
+                            formControlName="email">
+                    </div>
+                    <div *ngIf="signUpForm.get('email')?.touched && signUpForm.get('email')?.invalid">
+                        <small class="text-danger" *ngIf="signUpForm.get('email')?.errors?.['required']">Email is
+                            required</small>
+                    </div>
+
+
+                    <div class="input-group my-2 ">
+                        <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                        <input type="text" class="form-control" placeholder="Enter your mobile number"
+                            formControlName="mobileNumber">
+                    </div>
+                    <div *ngIf="signUpForm.get('mobileNumber')?.touched && signUpForm.get('mobileNumber')?.invalid">
+                        <small class="text-danger" *ngIf="signUpForm.get('mobileNumber')?.errors?.['required']">Mobile number is
+                            required</small>
+                    </div>
+
+
+                    <div class="input-group my-2">
+                        <span class="input-group-text"><i class="bi bi-lock"></i></span>
+                        <input [type]="showPassword ? 'text' : 'password'" class="form-control"
+                            placeholder="Enter your new password" formControlName="password">
+                        <button type="button" class="btn btn-outline-secondary"
+                            (click)="togglePasswordVisibility()">
+                            <i [class]="showPassword ? 'bi bi-eye-slash' : 'bi bi-eye'"></i>
+                        </button>
+                    </div>
+                    <div *ngIf="signUpForm.get('password')?.touched && signUpForm.get('password')?.invalid">
+                        <small class="text-danger" *ngIf="signUpForm.get('password')?.errors?.['required']">Password
+                            is
+                            required</small>
+                        <small class="text-danger" *ngIf="signUpForm.get('password')?.errors?.['minlength']">Password
+                            must be
+                            at least 6 characters</small>
+                    </div>
+
+
+                    <div class="input-group my-2">
+                        <span class="input-group-text"><i class="bi bi-lock"></i></span>
+                        <input [type]="showConfirmPassword ? 'text' : 'password'" class="form-control"
+                          placeholder="Confirm your password" formControlName="confirm_password">
+                        <button type="button" class="btn btn-outline-secondary" (click)="toggleConfirmPasswordVisibility()">
+                          <i [class]="showConfirmPassword ? 'bi bi-eye-slash' : 'bi bi-eye'"></i>
+                        </button>
+                      </div>
+                      <div
+                        *ngIf="signUpForm.get('confirm_password')?.touched && signUpForm.get('confirm_password')?.invalid">
+                        <small class="text-danger" *ngIf="signUpForm.get('confirm_password')?.errors?.['required']">Confirm
+                          Password is required</small>
+                      </div>
+                      <div
+                        *ngIf="signUpForm.errors?.['passwordMismatch'] && signUpForm.get('confirm_password')?.touched">
+                        <small class="text-danger">Passwords do not match</small>
+                      </div>
+
+
+                    <div class="w-100">
+                        
+                    </div>
+
+                    <div class="input-group my-2 ">
+                        <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                        <select name="userRole" id="userRole" class="form-select mb-2" formControlName="userRole">
+                            <option value="User" selected>User</option>
+                            <option value="Admin">Admin</option>
+                        </select>
+                    </div>
+                    <div *ngIf="signUpForm.get('userRole')?.touched && signUpForm.get('userRole')?.invalid">
+                        <small class="text-danger" *ngIf="signUpForm.get('userRole')?.errors?.['required']">Role is
+                            required</small>
+                    </div>
+
+
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <p>Already have an account?<a routerLink="/login" class="btn text-primary">Login</a></p>
+                </form>    
+            </div>
+        </div>
+    </div>
+</div>
+</div> -->
+
+
+<!-- <div class="container-fluid d-flex justify-content-center align-items-center" style="height: 100vh;">
+    <div class="d-flex shadow-lg rounded">
+        <img class="col-6" src="../../../assets/images/readifycover.png" alt="image">
+        <div class="col-6">
+            <div class="d-flex flex-column justify-content-center align-items-center w-100 h-100" >
+                <img src="../../../assets/images/logo.png" alt="logo" width="80" height="80" class="align-items-center">
+                <h1>Readify Market</h1>
+                <h4>SignUp</h4>
+                <form class="align-items-center d-flex flex-column w-75" [formGroup]="signUpForm" (ngSubmit)="onSignUp()">
+                    <div class="w-100">
+                        <input type="text" name="username" id="username" placeholder="Username" class="form-control my-1 " formControlName="username">
+                        <div *ngIf="signUpForm.get('username').touched && signUpForm.get('username').invalid">
+                            <small class="text-danger" *ngIf="signUpForm.get('username')?.errors?.['required']">Username is required</small>
+                        </div>
+                    </div>
+                    <div class="w-100">
+                        <input type="email" name="email" id="email" placeholder="Email" class="form-control my-1" formControlName="email">
+                        <div *ngIf="signUpForm.get('email').touched && signUpForm.get('email').invalid">
+                            <small class="text-danger" *ngIf="signUpForm.get('email')?.errors?.['required']">Email is required</small>
+                        </div>
+                    </div>
+                    <div class="w-100">
+                        <input type="text" name="mobileNumber" id="mobileNumber" placeholder="Mobile Number" class="form-control my-1" formControlName="mobileNumber">
+                        <div *ngIf="signUpForm.get('mobileNumber').touched && signUpForm.get('mobileNumber').invalid">
+                            <small class="text-danger" *ngIf="signUpForm.get('mobileNumber')?.errors?.['required']">Mobile number is required</small>
+                        </div>
+                    </div>
+                    <div class="w-100">
+                        <input type="password" name="password" id="password" placeholder="Password" class="form-control my-1 " formControlName="password">
+                        <div *ngIf="signUpForm.get('password').touched && signUpForm.get('password').invalid">
+                            <small class="text-danger" *ngIf="signUpForm.get('password')?.errors?.['required']">Password is required</small>
+                            <small class="text-danger" *ngIf="signUpForm.get('password')?.errors?.['minlength']">Password must be atleast 6 characters long</small>
+                        </div>
+                    </div>
+                    <div class="w-100">
+                        <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm Password" class="form-control my-1 " formControlName="confirm_password">
+                        <div *ngIf="signUpForm.get('confirm_password').touched && signUpForm.get('confirm_password').invalid">
+                            <small class="text-danger" *ngIf="signUpForm.get('confirm_password')?.errors?.['required']">Confirm Password is required</small>
+                        </div>
+                        <div *ngIf="signUpForm.errors?.['passwordMismatch'] && signUpForm.get('confirm_password')?.touched">
+                            <small class="text-danger">Password do not match</small>
+                        </div>
+                    </div>
+                    <div class="w-100">
+                        <select name="userRole" id="userRole" class="form-select mb-2" formControlName="userRole">
+                            <option value="User" selected>User</option>
+                            <option value="Admin">Admin</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <p>Already have an account?<a routerLink="/login" class="btn text-primary">Login</a></p>
+                </form>    
+            </div>
+        </div>
+    </div>
+</div> -->
+
+
+
+<div class="auth-page">
+  <div class="auth-card">
+    <div class="auth-visual">
+      <img src="../../../assets/readify_image.jpg" alt="Readify cover">
+      <div class="auth-visual__overlay">
+        <h2>Welcome to Readify Market</h2>
+        <p>Create your account and start exploring books that match your taste.</p>
+      </div>
+    </div>
+
+    <div class="auth-form-panel">
+      <div class="brand-header">
+        <img src="../../../assets/logo.avif" alt="Readify logo" width="70" height="70">
+        <div>
+          <h1>Readify Market</h1>
+          <p>Create your account</p>
+        </div>
+      </div>
+
+      <form [formGroup]="signUpForm" (ngSubmit)="onSignUp()" novalidate>
+        <div class="form-group">
+          <label for="username">Username</label>
+          <div class="input-group">
+            <span class="input-group-text"><i class="bi bi-person"></i></span>
+            <input id="username" type="text" class="form-control" placeholder="Enter your username" formControlName="username">
+          </div>
+          <div class="error-block" *ngIf="signUpForm.get('username')?.touched && signUpForm.get('username')?.invalid">
+            <small class="text-danger" *ngIf="signUpForm.get('username')?.errors?.['required']">Username is required</small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <div class="input-group">
+            <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+            <input id="email" type="email" class="form-control" placeholder="Enter your email" formControlName="email">
+          </div>
+          <div class="error-block" *ngIf="signUpForm.get('email')?.touched && signUpForm.get('email')?.invalid">
+            <small class="text-danger" *ngIf="signUpForm.get('email')?.errors?.['required']">Email is required</small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="mobileNumber">Mobile number</label>
+          <div class="input-group">
+            <span class="input-group-text"><i class="bi bi-phone"></i></span>
+            <input id="mobileNumber" type="text" class="form-control" placeholder="Enter your mobile number" formControlName="mobileNumber">
+          </div>
+          <div class="error-block" *ngIf="signUpForm.get('mobileNumber')?.touched && signUpForm.get('mobileNumber')?.invalid">
+            <small class="text-danger" *ngIf="signUpForm.get('mobileNumber')?.errors?.['required']">Mobile number is required</small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <div class="input-group">
+            <span class="input-group-text"><i class="bi bi-lock"></i></span>
+            <input id="password" [type]="showPassword ? 'text' : 'password'" class="form-control" placeholder="Enter your password" formControlName="password">
+            <button type="button" class="btn btn-outline-secondary" (click)="togglePasswordVisibility()">
+              <i [class]="showPassword ? 'bi bi-eye-slash' : 'bi bi-eye'"></i>
+            </button>
+          </div>
+          <div class="error-block" *ngIf="signUpForm.get('password')?.touched && signUpForm.get('password')?.invalid">
+            <small class="text-danger" *ngIf="signUpForm.get('password')?.errors?.['required']">Password is required</small>
+            <small class="text-danger" *ngIf="signUpForm.get('password')?.errors?.['minlength']">Password must be at least 6 characters</small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="confirm_password">Confirm password</label>
+          <div class="input-group">
+            <span class="input-group-text"><i class="bi bi-lock"></i></span>
+            <input id="confirm_password" [type]="showConfirmPassword ? 'text' : 'password'" class="form-control" placeholder="Confirm your password" formControlName="confirm_password">
+            <button type="button" class="btn btn-outline-secondary" (click)="toggleConfirmPasswordVisibility()">
+              <i [class]="showConfirmPassword ? 'bi bi-eye-slash' : 'bi bi-eye'"></i>
+            </button>
+          </div>
+          <div class="error-block" *ngIf="signUpForm.get('confirm_password')?.touched && signUpForm.get('confirm_password')?.invalid">
+            <small class="text-danger" *ngIf="signUpForm.get('confirm_password')?.errors?.['required']">Confirm Password is required</small>
+          </div>
+          <div class="error-block" *ngIf="signUpForm.errors?.['passwordMismatch'] && signUpForm.get('confirm_password')?.touched">
+            <small class="text-danger">Passwords do not match</small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="userRole">Role</label>
+          <select id="userRole" class="form-select" formControlName="userRole">
+            <option value="User" selected>User</option>
+            <option value="Admin">Admin</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100 mt-2">Create account</button>
+        <p class="text-center mt-3 mb-0">
+          Already have an account?
+          <a routerLink="/login" class="text-primary fw-semibold">Login</a>
+        </p>
+      </form>
+    </div>
+  </div>
+</div>

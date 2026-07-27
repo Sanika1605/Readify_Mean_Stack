@@ -1,0 +1,71 @@
+<app-usernav></app-usernav>
+<div class="container my-4">
+    <h1 class="text-center mb-4"> Checkout</h1>
+    <div *ngIf="cart.length > 0; else emptyCart">
+        <div class="row mb-4">
+            <div class="col-md-8">
+                <div *ngFor="let item of cart" class="card mb-3 p-3">
+                    <div class="d-flex align-items-center gap-3">
+                        <img [src]="item.book.image" alt="Book Image"
+                            style="height: 100px; width: 100px; object-fit: cover;">
+                        <div>
+                            <h3><strong>{{ item.book.name }}</strong></h3>
+                            <p><strong>Price:</strong> ${{ item.book.price }}</p>
+                            <div class="d-flex gap-2 align-items-center">
+                                <button class="btn btn-sm btn-outline-secondary"
+                                    (click)="decreaseQuantity(item.book._id)">−</button>
+                                <span>{{ item.quantity }}</span>
+                                <button class="btn btn-sm btn-outline-secondary"
+                                    (click)="increaseQuantity(item.book._id)">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <form>
+                    <div class="mb-3">
+                        <label>Shipping Address</label>
+                        <input type="text" class="form-control" [(ngModel)]="shippingAddress" name="shippingAddress"
+                            required>
+                    </div>
+                    <div class="mb-3">
+                        <label>Billing Address</label>
+                        <input type="text" class="form-control" [(ngModel)]="billingAddress" name="billingAddress"
+                            required> 
+                    </div>
+                    <div class="mb-3">
+                        <h2><strong>Total Amount:</strong> ${{ totalAmount }}</h2>
+                    </div>
+                    <button type="button" class="btn btn-success w-100" data-bs-toggle="modal"
+                        data-bs-target="#confirmModal">
+                        Confirm Payment
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <ng-template #emptyCart>
+        <h3 class="text-center">Your cart is empty.</h3>
+    </ng-template>
+</div>
+
+<div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Confirm Payment</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to place this order?
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-success" (click)="placeOrder()" data-bs-dismiss="modal">Yes</button>
+                <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

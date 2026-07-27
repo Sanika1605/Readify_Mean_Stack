@@ -1,0 +1,59 @@
+<!-- <app-adminnav></app-adminnav> -->
+<app-usernav></app-usernav>
+
+<div class="container my-4">
+        <h2 class="text-center">Admin Dashboard</h2>
+        <hr>
+    
+        <div class="row g-3">
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="bg-success text-white p-3 rounded text-center">
+                    <p>TOTAL USERS</p>
+                    <h2><b>{{userCount}}</b></h2>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-3">
+                <div class="bg-info text-white p-3 rounded text-center">
+                    <p>TOTAL BOOKS</p>
+                    <h2><b>{{bookCount}}</b></h2>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-3">
+                <div class="bg-warning text-dark p-3 rounded text-center">
+                    <p>TOTAL ORDERS</p>
+                    <h2><b>{{orderCount}}</b></h2>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-3">
+                <div class="bg-secondary text-white p-3 rounded text-center">
+                    <p>TOTAL REVIEWS</p>
+                    <h2><b>{{reviewCount}}</b></h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="table-responsive mt-5 mb-5">
+            <h3 class="text-start"><strong>Users List</strong></h3>
+            <table class="table  table-hover">
+                <thead>
+                    <tr>
+                        <th class="bg-success-subtle">SR NO</th>
+                        <th class="bg-success-subtle">USERNAME</th>
+                        <th class="bg-success-subtle d-none d-md-table-cell">EMAIL</th>
+                        <th class="bg-success-subtle d-none d-md-table-cell">MOBILE NUMBER</th>
+                        <th class="bg-success-subtle">ROLE</th>
+                </tr>
+            </thead>
+                <tbody>
+                    <tr *ngFor="let user of filtered; let i = index">
+                        <td>{{i + 1}}</td>
+                        <td>{{user.username}}</td>
+                        <td class="d-none d-md-table-cell">{{user.email}}.com</td>
+                        <td class="d-none d-md-table-cell">{{user.mobileNumber}}</td>
+                        <!-- <td>User</td> -->
+                        <td>{{user.userRole}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

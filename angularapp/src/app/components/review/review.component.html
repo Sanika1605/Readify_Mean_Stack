@@ -1,0 +1,31 @@
+<app-usernav></app-usernav>
+<div class="container d-flex justify-content-center align-items-center" style="height: 80vh;">
+    <form #reviewForm="ngForm" (ngSubmit)="onSubmit(reviewForm)"
+    class="d-flex flex-column justify-content-center align-items-center w-50 shadow-lg p-3 rounded">
+        <h2>📚 Share Your Thoughts</h2>
+        <textarea name="reviewText" id="reviewText" cols="30" rows="8" placeholder="write your review here..."
+        class="form-control" [(ngModel)]="review.reviewText"></textarea>
+
+        <div class="star-rating my-2">
+            <span *ngFor="let star of stars; let i = index" (click)="setRating(i + 1)" (mouseover)="hoverRating(i + 1)"
+            (mouseleave)="hoverRating(0)">
+            <i class="fa" [ngClass]="{
+             'fa-star': (i + 1) <= (hoveredRating || review.rating),
+             'fa-star-o': (i + 1) > (hoveredRating || review.rating)
+       }" style="font-size: 2rem; cursor: pointer; color: gold;"></i>
+            </span>
+        </div>
+        <button type="submit" class="btn btn-success w-100">Submit Review</button>
+    </form>
+</div>
+
+<!-- <app-usernav></app-usernav>
+<div class="container d-flex justify-content-center align-items-center" style="height: 80vh;">
+    <form #reviewForm="ngForm" (ngSubmit)="onSubmit(reviewForm)" class="d-flex flex-column justify-content-center align-items-center w-50 shadow-lg p-3 rounded">
+        <h2>📚 Share Your Thoughts</h2>
+        <textarea name="reviewText" id="reviewText" cols="30" rows="8" placeholder="write your review here..." class="form-control" [(ngModel)]="review.reviewText"></textarea>
+        <input type="number" name="rating" id="rating" max="5" min="1" [(ngModel)]="review.rating" class="form-control mt-2" placeholder="out of 5">
+        <h3 class="my-3">😡😞😐😊😍</h3>
+        <button type="submit" class="btn btn-success w-100">Submit Review</button>
+    </form>    
+</div> -->

@@ -1,0 +1,99 @@
+<!-- <app-adminnav></app-adminnav> -->
+<app-usernav></app-usernav>
+
+<div class="container">
+    <h1 class="mt-2 text-center"><b>View Reviews</b></h1>
+    <hr>
+    <div class="d-flex gap-2 mb-4 ">
+        <input type="text" name="searchText" id="searchText" [(ngModel)]="searchText" placeholder="Search review, rating, username..." class="form-control " (input)="searchReviews()">
+        <select name="sortOrder" id="sortOrder" class="form-select" (change)="sortByRating($event)">
+            <option value="" selected disabled>Sort by Rating: Ascending</option>
+            <option value="Ascending">Ascending</option>
+            <option value="Decending">Decending</option>
+        </select>
+    </div>
+    <div class="d-flex flex-column justify-content-center align-items-center">
+        <div class="card content w-100 p-4 border-bottom-0 border-top-0 border-end-0 border-start-5 border-warning shadow rounded-2 mb-3 border-start " *ngFor="let review of filteredReviews">
+            <p><strong>{{review.user?.username ?? 'Unknown user'}}</strong> <br> <strong>Date:</strong> {{review.date | date}}<br><strong>Rating: </strong><span *ngFor="let star of getStars(review.rating)">{{star}}</span><br><strong>Review: </strong>{{review.reviewText}}</p>
+            <div class="buttons d-flex gap-2">
+                <button type="button" class="btn btn-primary col-6" data-bs-toggle="modal" data-bs-target="#viewProductModal" (click)="viewProduct(review.book)">View Product</button>
+                <button type="button" class="btn btn-warning col-6" data-bs-toggle="modal" data-bs-target="#viewProfileModal" (click)="viewUserProfile(review.user)">View Profile</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="viewProductModal" tabIndex="-1" aria-labelledby="viewProductModalLabel" aria-hidden="true">
+    <div class="modal-dialog  modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="viewProductModalLabel">Book Details</h3>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="d-flex flex-column justify-content-center align-items-center">
+                    <img src="{{book?.['image']}}" alt="image" width="100" height="100">
+                    <p><strong>Book Name: </strong>{{book?.['name']}}</p>
+                    <p><strong>Price: </strong>{{book?.['price']}}</p>
+                    <p><strong>Stock: </strong>{{book?.['stock']}}</p>
+                    <p><strong>Quantity: </strong>{{book?.['stockQuantity']}}</p>
+                    <p><strong>Description: </strong>{{book?.['description']}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="viewProfileModal" tabIndex="-1" aria-labelledby="viewProfileModalLabel" aria-hidden="true">
+    <div class="modal-dialog  modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="viewProfileModalLabel">User Profile</h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body d-flex justify-content-center gap-3">
+                <img src="https://i.pravatar.cc/150" alt="image" class="rounded-circle">
+                <div class="d-flex flex-column justify-content-center ">
+                    <p><strong>Username: </strong>{{username}}</p>
+                    <p><strong>Email: </strong>{{email}}</p>
+                    <p><strong>Mobile Number: </strong>{{mobileNumber}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!--  <div class="mt-5 mb-5">
+        <div class="shadow-lg p-2 rounded border-start border-warning mb-4">
+            <h3>Atomic Habits</h3>
+            <p>Stars...</p>
+            <p><strong>Date:</strong>Oct 13, 2025</p>
+            <p>review text...</p>
+            <div class="d-flex text-center gap-2">
+                <button class="btn btn-primary w-100">View Book</button>
+                <button class="btn btn-danger w-100">View Profile</button>
+            </div>
+        </div>
+        <div class="shadow-lg p-2 rounded border-start border-warning mb-4">
+            <h3>Atomic Habits</h3>
+            <p>Stars...</p>
+            <p><strong>Date:</strong>Oct 13, 2025</p>
+            <p>review text...</p>
+            <div class="d-flex text-center gap-2">
+                <button class="btn btn-primary w-100">View Book</button>
+                <button class="btn btn-danger w-100">View Profile</button>
+            </div>
+        </div>
+        <div class="shadow-lg p-2 rounded border-start border-warning mb-4">
+            <h3>Atomic Habits</h3>
+            <p>Stars...</p>
+            <p><strong>Date:</strong>Oct 13, 2025</p>
+            <p>review text...</p>
+            <div class="d-flex text-center gap-2">
+                <button class="btn btn-primary w-100">View Book</button>
+                <button class="btn btn-danger w-100">View Profile</button>
+            </div>
+        </div>
+    </div> -->

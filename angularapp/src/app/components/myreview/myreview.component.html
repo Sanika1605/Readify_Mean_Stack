@@ -1,0 +1,44 @@
+<app-usernav></app-usernav>
+<div class="container">
+<!-- <div class="container d-flex justify-content-center align-items-center" style="height: 100vh;"> -->
+    <h1 class="text-center my-5">My Thoughts</h1>
+    <div class="d-flex justify-content-center align-items-center">
+        <div class="d-flex justify-content-center align-items-center gap-2" style="height: 50vh;" *ngIf="reviews.length>0;else emptyList">
+            <div class="card content w-100 p-4 border-bottom-0 border-top-0 border-end-0 border-start-5 border-warning shadow rounded-2 mb-3 border-start " *ngFor="let review of reviews">
+                <p>{{review.book?.name ?? 'Unknown book'}} <br> Date: {{review.date | date}}<br>Rating: {{review.rating}}<br> {{review.reviewText}}</p>
+                <div class="buttons d-flex gap-2">
+                    <button type="button" class="btn btn-primary col-6" data-bs-toggle="modal" data-bs-target="#viewProductModal" (click)="viewProduct(review.book)">📚View Book</button>
+                    <button type="button" class="btn btn-danger col-6" (click)="deleteReviews(review.book)">🗑️Delete Review</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <ng-template class="d-flex justify-content-center align-items-center" #emptyList>
+           <h2 class="w-50 shadow text-center p-5"> No reviews yet!</h2>
+    </ng-template>
+
+    <div class="modal fade" id="viewProductModal" tabIndex="-1" aria-labelledby="viewProductModalLabel" aria-hidden="true">
+        <div class="modal-dialog  modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="viewProductModalLabel">Book Details</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="d-flex justify-content-center align-items-center gap-3">
+                        <img src="{{book?.['image']}}" alt="image" width="100" height="100">
+                        <div>
+                            <p><strong>Book Name: </strong>{{book?.['name']}}</p>
+                            <p><strong>Price: </strong>{{book?.['price']}}</p>
+                            <p><strong>Stock: </strong>{{book?.['stock']}}</p>
+                            <p><strong>Quantity: </strong>{{book?.['stockQuantity']}}</p>
+                            <p><strong>Description: </strong>{{book?.['description']}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

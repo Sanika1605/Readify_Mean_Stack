@@ -1,0 +1,183 @@
+<app-usernav></app-usernav>
+
+<div class="container-fluid">
+    <h1 class="text-center my-3">📚 Manage Books</h1>
+    <hr>
+    <div class="d-flex flex-wrap justify-content-center gap-2 my-4">
+        <input type="text" placeholder="Search books..." class="form-control w-25"
+            (input)="onSearchChange(($any($event.target)).value)">
+
+        <select class="form-select w-25" (change)="onCategoryChange(($any($event.target)).value)">
+            <option value="">All Categories</option>
+            <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+        </select>
+        <select class="form-select w-25" (change)="onSortChange(($any($event.target)).value)">
+            <option value="">Sort By</option>
+            <option value="price">Price</option>
+            <option value="stock">Stock</option>
+        </select>
+        <button class="btn btn-outline-warning" routerLink="/addBook">Add Book</button>
+    </div>
+    <div class="row justify-content-center">
+        <div *ngFor="let book of filteredBooks" class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+            <div class="card h-100">
+                <img [src]="book.image" alt="img" class="image-fluid rounded-top " height="200">
+                <!-- <img [src]="book.image" alt="img" class="card-img-top" style="height: 200px; object-fit: cover;"> -->
+                <div class="card-body d-flex flex-column justify-content-between">
+                    <h2 class="card-title">{{ book.name }}</h2>
+                    <p class="card-text">Price: {{ book.price }}</p>
+                    <p class="card-text">Author: {{ book.author }}</p>
+                    <p class="card-text">Stock: {{ book.stockQuantity }}</p>
+                    <p class="card-text">Category: {{ book.category }}</p>
+                    <div class="mt-auto gap-2 d-flex justify-content-between">
+                        <button class="btn btn-warning col-6" (click)="openUpdateModal(book)" data-bs-toggle="modal" data-bs-target="#updateBookModal">Edit</button>
+                        <button class="btn btn-danger col-6" (click)="deleteBook(book._id ?? undefined)">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade " id="updateBookModal" tabindex="-1" aria-labelledby="updateBookModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form (ngSubmit)="submitUpdateBook()">
+                    <div class="modal-header">
+                        <h2 class="modal-title" id="updateBookModalLabel">Update Book</h2>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" #closeModalButton></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-2 ">
+                            <label>Name</label>
+                            <input type="text" class="form-control" [(ngModel)]="selectedBook.name" name="name"
+                                required>
+                        </div>
+                        <label>Author</label>
+                        <input type="text" class="form-control" [(ngModel)]="selectedBook.author" name="author"
+                            required>
+                    </div>
+                    <div class="mb-2 p-3">
+                        <label>Price</label>
+                        <input type="number" class="form-control" [(ngModel)]="selectedBook.price" name="price"
+                            required>
+                    </div>
+                    <div class="mb-2 p-3">
+                        <label>Stock Quantity</label>
+                        <input type="number" class="form-control" [(ngModel)]="selectedBook.stockQuantity"
+                            name="stockQuantity" required>
+                    </div>
+                    <div class="mb-2 p-3">
+                        <label>Category</label>
+                        <input type="text" class="form-control" [(ngModel)]="selectedBook.category" name="category"
+                            required>
+                    </div>
+                    <div class="mb-2 p-3">
+                        <label>Image URL</label>
+                        <input class="form-control" type="file" (change)="onImageSelected($event)" accept="image/*" >
+                        <!-- <input type="text" class="form-control" [(ngModel)]="selectedBook.image" name="image" required> -->
+                    </div>
+                    <img *ngIf="selectedBook.image"  [src]="selectedBook.image" alt="Preview" class="img-thumbnail mt-2" style="max-height: 200px;">
+
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Update</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- <app-adminnav></app-adminnav>
+<div class="container-fluid d-flex justify-content-center align-items-center">
+    <div class="my-4">
+        <h1 class="text-center">📚 Manage Books</h1>
+        <hr>
+        <div class="d-flex justify-content-center gap-2">
+            <input type="text" name="search" id="search" placeholder="search books..." class="form-control w-25">
+            <select name="category" id="category" class="form-select w-25">
+                <option value="" selected disabled >All Categories</option>
+            </select>
+        </div>
+
+        <div class="container-fluid gap-2 px-auto row w-100 d-flex justify-content-center align-items-center mt-3">
+            <div *ngFor="let book of books" class="card col-2 ms-3 p-3" style="width: 300px;">
+                <img [src]="book.image" alt="img" class="image-fluid" height="200">
+                <h3>{{book.name}}</h3>
+                <p>Price: {{book.price}}</p>
+                <p>Author: {{book.author}}</p>
+                <p>Stock: {{book.stockQuantity}}</p>
+                <p>Category: {{book.category}}</p>
+                <div class="d-flex justify-content-between w-100 gap-1">
+                    <button class="btn btn-warning col-6">Edit</button>
+                    <button class="btn btn-danger col-6">Delete</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div> -->
+
+
+<!-- <div class="row justify-content-center">
+    <div *ngFor="let book of filteredBooks" class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+        <div class="card h-100 p-3">
+            <img [src]="book.image" alt="img" class="img-fluid mb-2" height="200">
+            <h3>{{ book.name }}</h3>
+            <p>Price: {{ book.price }}</p>
+            <p>Author: {{ book.author }}</p>
+            <p>Stock: {{ book.stockQuantity }}</p>
+            <p>Category: {{ book.category }}</p>
+            <div class="d-flex justify-content-between">
+                <button class="btn btn-warning">Edit</button>
+                <button class="btn btn-danger">Delete</button>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+
+<!-- <app-adminnav></app-adminnav>
+
+<div class="container-fluid">
+    <h1 class="text-center">📚 Manage Books</h1>
+    <hr>
+
+    <div class="d-flex flex-wrap justify-content-center gap-2 mb-3">
+        <input type="text" placeholder="Search books..." class="form-control w-25"
+            (input)="onSearchChange($event.target.value)">
+
+        <select class="form-select w-25" (change)="onCategoryChange($event.target.value)">
+            <option value="">All Categories</option>
+            <option *ngFor="let book of books" [value]="book.category">{{ book.category }}</option>
+        </select>
+
+        <select class="form-select w-25" (change)="onSortChange($event.target.value)">
+            <option value="">Sort By</option>
+            <option value="price">Price</option>
+            <option value="stock">Stock</option>
+        </select>
+    </div>
+
+
+    <div class="container-fluid gap-2 px-auto row w-100 d-flex justify-content-center align-items-center mt-3">
+        <div *ngFor="let book of filteredBooks" class="card col-2 ms-3 p-3" style="width: 300px;">
+            <img [src]="book.image" alt="img" class="image-fluid" height="200">
+            <h3>{{book.name}}</h3>
+            <p>Price: {{book.price}}</p>
+            <p>Author: {{book.author}}</p>
+            <p>Stock: {{book.stockQuantity}}</p>
+            <p>Category: {{book.category}}</p>
+            <div class="d-flex justify-content-between w-100 gap-1">
+                <button class="btn btn-warning col-6">Edit</button>
+                <button class="btn btn-danger col-6">Delete</button>
+            </div>
+        </div>
+    </div>
+
+</div> -->
