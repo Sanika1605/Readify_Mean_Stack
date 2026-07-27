@@ -1,0 +1,21 @@
+# --- General ---
+*.log
+.DS_Store
+.vscode/
+.idea/
+
+# --- Node backend ---
+.env
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# --- Angular frontend ---
+dist/
+node_modules/
+.angular/
+coverage/
+
+# --- OS files ---
+Thumbs.db
