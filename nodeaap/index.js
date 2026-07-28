@@ -10,22 +10,27 @@ const cors=require('cors');
 const app=express()
 const port = process.env.PORT || 8080;
 
-const allowedOrigins = [
-    'http://localhost:4200',
-    'http://127.0.0.1:8081',
-    'https://8081-feddebdbccbcfb336329890ceadbdbefone.premiumproject.examly.io'
-];
+const path = require('path');
+
+
+// const allowedOrigins = [
+//     'http://localhost:4200',
+//     'http://127.0.0.1:8081',
+//     'https://8081-feddebdbccbcfb336329890ceadbdbefone.premiumproject.examly.io'
+// ];
 // const allowedOrigins = [
 //     'http://localhost:8081',
 //     'http://127.0.0.1:8081',
 //     'https://8081-feddebdbccbcfb336329890ceadbdbefone.premiumproject.examly.io'
 // ];
 
-app.use(cors({
-    origin: allowedOrigins,
-    methods:['GET','POST','PUT','DELETE','PATCH'],
-    allowedHeaders:['content-type','authorization']
-}))
+app.use(cors());
+
+// app.use(cors({
+//     origin: allowedOrigins,
+//     methods:['GET','POST','PUT','DELETE','PATCH'],
+//     allowedHeaders:['content-type','authorization']
+// }))
 
 // allowedHeaders:['content-type','authorization','Content-Type'],
 // credentials:true
@@ -36,6 +41,14 @@ app.use('/books',bookRouter)
 app.use('/order',orderRouter)
 app.use('/review',reviewRouter)
 
+
+// Serve Angular dist folder
+app.use(express.static(path.join(__dirname, 'angularapp/dist/angularapp')));
+
+// Catch-all route to serve Angular index.html
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'angularapp/dist/angularapp/index.html'));
+});
 
 const mongoUri = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/readify';
 mongoose.set('strictQuery', true); 
