@@ -1,22 +1,26 @@
-const jwt=require('jsonwebtoken')
+const jwt = require('jsonwebtoken');
 
-const generateToken=(user)=>{
-    console.log(user)
-    return jwt.sign(user,
-        "#secret123",{expiresIn:'1d'});
-}
+const generateToken = (user) => {
+    return jwt.sign(user, process.env.JWT_SECRET, {
+        expiresIn: '1d'
+    });
+};
 
-const validateToken=(req,res,next)=>{
-    const authToken=req.headers.authorization;
-    if(!authToken || ! authToken.startsWith('Bearer')){
-        return res.status(401).json({message:'Unauthorised user'})
+const validateToken = (req, res, next) => {
+    const authToken = req.headers.authorization;
+
+    if (!authToken || !authToken.startsWith('Bearer ')) {
+        return res.status(401).json({ message: 'Unauthorized user' });
     }
-    const token=authToken.substring(7);
+
+    const token = authToken.substring(7);
+
     try {
-        jwt.verify(token,'#secret123');
-        next()
+        jwt.verify(token, process.env.JWT_SECRET);
+        next();
     } catch (error) {
-        return res.status(401).json({message:'Unauthorized user'})
+        return res.status(401).json({ message: 'Unauthorized user' });
     }
-}
-module.exports={generateToken,validateToken}
+};
+
+module.exports = { generateToken, validateToken };
