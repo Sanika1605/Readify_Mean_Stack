@@ -42,14 +42,6 @@ app.use('/order',orderRouter)
 app.use('/review',reviewRouter)
 
 
-// Serve Angular dist folder
-app.use(express.static(path.join(__dirname, 'angularapp/dist/angularapp')));
-
-// Catch-all route to serve Angular index.html
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'angularapp/dist/angularapp/index.html'));
-});
-
 const mongoUri = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/readify';
 mongoose.set('strictQuery', true); 
 mongoose.connect(mongoUri,{
